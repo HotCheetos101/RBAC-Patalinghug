@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,8 @@
         }
 
         .auth-labels {
-              display:inline-block;
-              width: 8em;
+            display: inline-block;
+            width: 8em;
         }
 
         .auth-textbox {
@@ -23,35 +24,37 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col text-end">
                 <div class="fs-6">
                     @if(Auth::check())
-                       {{ Auth::user()->userInfo->user_firstname.' '.Auth::user()->userInfo->user_lastname }}
-                       <span class="fs-6" style="font-weight: bold;">
-                       @if(Auth::user()->hasRole('admin'))
-                          : Admin User
-                       @else
-                          : User
-                       @endif
-                       </span>
-                       @include('slugs.logout')
+                    {{ Auth::user()->userInfo->user_firstname.' '.Auth::user()->userInfo->user_lastname }}
+                    <span class="fs-6" style="font-weight: bold;">
+                        @if(Auth::user()->hasRole('admin'))
+                        : Admin User
+                        @else
+                        : User
+                        @endif
+                    </span>
+                    @include('slugs.logout')
                     @endif
-                 </div>
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
                 @if(!Auth::check())
-                    @yield('auth-content')
+                @yield('auth-content')
                 @else
-                    @yield('page-content')
+                @yield('page-content')
                 @endif
             </div>
         </div>
     </div>
 </body>
+
 </html>

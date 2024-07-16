@@ -15,8 +15,9 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function manageUsers(){
-        $users = User::select('id','name','email')->paginate(10);
+    public function manageUsers()
+    {
+        $users = User::select('id', 'name', 'email')->paginate(10);
         $roles = Role::all();
         $permissions = Permission::all();
 

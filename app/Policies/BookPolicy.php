@@ -32,7 +32,7 @@ class BookPolicy
     public function view(User $user): bool
     {
         //
-        return $user->roles->flatMap->permissions->contains('name','can_view');
+        return $user->roles->flatMap->permissions->contains('name', 'can_view');
     }
 
     /**
@@ -41,8 +41,7 @@ class BookPolicy
     public function create(User $user): bool
     {
 
-        return $user->roles->flatMap->permissions->contains('name','can_create');
-
+        return $user->roles->flatMap->permissions->contains('name', 'can_create');
     }
 
     /**
