@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Edit User Role</h4>
+                    <h4 class="mb-0">Edit Useraa Role</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('users.update', $user->id) }}" method="POST">
@@ -31,9 +31,9 @@
                             <label for="userRole" class="form-label">Role</label>
                             <select class="form-select" id="userRole" name="role_id">
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" {{ $user->roles->pluck('id')->contains($role->id) ? 'selected' : '' }}>
-                                        {{ $role->name }}
-                                    </option>
+                                <option value="{{ $role->id }}" {{ $user->roles->pluck('id')->contains($role->id) ? 'selected' : '' }}>
+                                    {{ $role->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
