@@ -12,44 +12,47 @@ use App\Models\UserInfo;
 class BookController extends Controller
 {
     //
-    public function showAllLedgers() {
+    public function showAllLedgers()
+    {
 
-       $response = Gate::inspect('viewAll');
+        $response = Gate::inspect('viewAll');
 
-       if($response->allowed()){
-          $allBooks = Book::paginate(10);
+        if ($response->allowed()) {
+            $allBooks = Book::paginate(10);
 
-          return view('acctg.books.viewLedgers')->with(compact('allBooks'));
-       } else {
-          return redirect()->back();
-       }
-
+            return view('acctg.books.viewLedgers')->with(compact('allBooks'));
+        } else {
+            return redirect()->back();
+        }
     }
 
-    public function newLedgerEntry(Request $request) {
+    public function newLedgerEntry(Request $request)
+    {
 
         $response = Gate::inspect('create');
 
-        if($response->allowed()){
+        if ($response->allowed()) {
             return view('acctg.books.newLedger');
         } else {
             return redirect()->back();
         }
-
     }
 
-    public function viewLedgerDetails($id) {
+
+
+    public function viewLedgerDetails($id)
+    {
         $response = Gate::inspect('view');
         // Gate::authorize('view');
 
-        if ($response->allowed()){
+        if ($response->allowed()) {
             $ledger = Book::find($id);
 
-            $encoderName = UserInfo::where('user_id',$ledger->user_id)->get();
+            $encoderName = UserInfo::where('user_id', $ledger->user_id)->get();
 
             // dd($encoderName);
 
-            return view('acctg.books.viewLedger')->with(compact('ledger'))->with(['encoder'=> $encoderName[0]]);
+            return view('acctg.books.viewLedger')->with(compact('ledger'))->with(['encoder' => $encoderName[0]]);
         } else {
             // echo $response->message();
             return redirect()->back();
